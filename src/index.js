@@ -8,6 +8,7 @@ import * as serviceWorker from './serviceWorker';
 // =================================================================================
 /////////////////////////////////////
 // STATE
+import {createStore} from 'redux';
 import initialState from './base.json';
 console.log(initialState);
 
@@ -36,6 +37,7 @@ function cards(state=initialState, action={type: ''}) {
     switch(action.type) {
         case ACTION_CATCH:
         // find the card, set it to caught
+        console.log(`cards got called with ${action.payload}`)
         break;
         default:
             return state
@@ -49,8 +51,7 @@ function cards(state=initialState, action={type: ''}) {
 /////////////////////////////////////
 // STORE
 
-
-
+const store= createStore(cards);
 
 
 // =================================================================================
