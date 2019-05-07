@@ -6,17 +6,15 @@
 import {connect} from 'react-redux'
 import PokeList from '../components/PokeList'
 
-mapStateToProps = (state) => {
+const mapStateToProps = (state) => {
     return {
         cards: state.cards
     }
 }
 
-mapDispatchToProps = ({}) => {
 
-}
-
-const SmartPokeList = connect(mapStateToProps)(PokeList);
+const WireItUp = connect(mapStateToProps)
+const SmartPokeList = WireItUp(PokeList);
 
 export default SmartPokeList
 
