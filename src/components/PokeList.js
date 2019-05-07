@@ -1,16 +1,19 @@
 import React from 'react';
-
-function PokeList({cards, handleClick}) {
-
-
-    const cardItems = cards.map(card => <li onClick={() => handleClick(card.id)} key={card.id}>{card.name}</li>)
-
-    return (
-        <ul>
+function PokeList({cards, handleClick}){
+    const cardItems = cards.map(card => {
+        return(
+        <li 
+            key={card.id} 
+            onClick={() => handleClick(card.id)} >
+            {card.name}
+        </li>
+        )
+    })
+    return(
+        <ul>   
             {cardItems}
         </ul>
     )
+    
 }
-
-
-export default PokeList; 
+export default PokeList;

@@ -12,7 +12,7 @@ const VISIBILITY_UNCAUGHT = 'uncaught';
 
 const initialState = {
     ...initalCards,
-    visibilityFilter: VISIBILITY_ALL
+    visibilityFilter: VISIBILITY_UNCAUGHT
 }
 
 // what state looks like - object with a cards property which is an array of objects
@@ -77,7 +77,6 @@ function cards(state=initialState.cards, action={type: ''}) {
             return newState
         default:
             return state
-        break;
     }
 }
 

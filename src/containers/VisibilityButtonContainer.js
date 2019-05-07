@@ -3,8 +3,8 @@
     // 2. grab a dumb component
     // 3. smash them together
     import {connect} from 'react-redux';
-    import PokeList from '../components/PokeList';
-    import {catchCard} from '../actions-reducers';
+    import VisibilityButton from '../components/VisibilityButton';
+    import {visibilitySetAll, visibilitySetCaught, visibilitySetUncaught} from '../actions-reducers';
     
     // Need to:
         // tell it how to map redux state to react props
@@ -14,28 +14,27 @@
     // translate from redux state to react props
     const mapStateToProps = (state) => {
         // return a custom props object
-        const pushedCards = (state.cards).filter(card => {
-            switch(state.visibilityFilter){
-                case "caught":
-                return (card.isCaught);
-                case "uncaught":
-                return !(card.isCaught);
-                default:
-                return card;
-    
-            }
-        });
         return{
             // react: redux
-            cards: pushedCards,
+            visibilityFilter: state.visibilityFilter,
+            labels: ['all', 'caught', 'uncaught']
         };
     };
     
     const mapDispatchToProps = (dispatch) => {
         // return a custom props object
         return{
-            handleClick: (id) => {
-                dispatch(catchCard(id));
+            handleClick: (label) => {
+                switch(label){
+                    case 'all':
+                    return dispatch(visibilitySetAll());
+                    case 'caught':
+                    return dispatch(visibilitySetCaught());
+                    case 'uncaught':
+                    return dispatch(visibilitySetUncaught());
+                    default:
+                    return dispatch(visibilitySetAll());
+                }
             }
         };
     };
@@ -45,6 +44,6 @@
     const wireUpTheComponent = connect(mapStateToProps, mapDispatchToProps);
     // alternative name: `makeComponentSmart`
     
-    const SmartPokeList =  wireUpTheComponent(PokeList);
+    const SmartVisibilityButton =  wireUpTheComponent(VisibilityButton);
     
-    export default SmartPokeList;
+    export default SmartVisibilityButton;
