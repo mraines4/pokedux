@@ -5,6 +5,7 @@
 
 import {connect} from 'react-redux'
 import PokeList from '../components/PokeList'
+import {catchCard} from '../actions-reducers';
 
 const mapStateToProps = (state) => {
     return {
@@ -12,8 +13,16 @@ const mapStateToProps = (state) => {
     }
 }
 
+const mapDispatchToProps = dispatch => {
+    return {
+        handleClick : (id) => {
+            dispatch(catchCard(id))
+        }
+    }
+}
 
-const WireItUp = connect(mapStateToProps)
+
+const WireItUp = connect(mapStateToProps, mapDispatchToProps)
 const SmartPokeList = WireItUp(PokeList);
 
 export default SmartPokeList
