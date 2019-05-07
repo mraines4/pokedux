@@ -36,9 +36,23 @@ function catchCard(id) {
 function cards(state=initialState, action={type: ''}) {
     switch(action.type) {
         case ACTION_CATCH:
-        // find the card, set it to caught
-        console.log(`cards got called with ${action.payload}`)
-        break;
+            // find the card, set it to caught
+            const newState = {
+                ...state,
+                cards: state.cards.map(card => {
+                    if (card.id === action.payload.id) {
+                        return {
+                            ...card,
+                            isCaught: true
+                        }
+                    } else {
+                        return card;
+                    }
+                })
+            };
+            // whatever is returned by the reducer, is auto used by the store as the new version of state
+            return newState
+            break;
         default:
             return state
         break;
