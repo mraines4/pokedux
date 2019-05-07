@@ -12,4 +12,5 @@ function PokeList({cards}) {
     )
 }
 
+
 export default PokeList; 
