@@ -4,7 +4,7 @@ function PokeList({cards, handleClick}){
         return(
         <img  src={card.imageUrl}
             key={card.id} 
-            onClick={() => handleClick(card.id)}  />
+            onClick={() => handleClick(card.id)} alt='pokemon card' />
         
         
         )
